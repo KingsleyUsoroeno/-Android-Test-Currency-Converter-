@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+				xmlns:app="http://schemas.android.com/apk/res-auto">
+	
+	<ScrollView
+			android:id="@+id/parentLayout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fillViewport="true">
+		
+		<androidx.coordinatorlayout.widget.CoordinatorLayout
+				android:layout_width="match_parent"
+				android:id="@+id/coordinateBottomSheet"
+				android:layout_height="wrap_content">
+			
+			<androidx.constraintlayout.widget.ConstraintLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+				
+				<TextView
+						android:id="@+id/tvSignUp"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginEnd="@dimen/dimen_12"
+						android:fontFamily="@font/open_sans_semibold"
+						android:padding="@dimen/dimen_4"
+						android:text="@string/sign_up"
+						android:textColor="@color/jade_green"
+						android:textSize="@dimen/text_size_18"
+						app:layout_constraintBottom_toBottomOf="parent"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintTop_toTopOf="parent"
+						app:layout_constraintVertical_bias="0.05"/>
+				
+				<ImageView
+						android:id="@+id/img_sort"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="@dimen/dimen_12"
+						android:padding="@dimen/dimen_4"
+						android:src="@drawable/ic_sort"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toTopOf="@id/tvSignUp"/>
+				
+				<TextView
+						android:id="@+id/tvCurrencyCal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="@dimen/dimen_18"
+						android:fontFamily="@font/open_sans_semibold"
+						android:padding="@dimen/dimen_6"
+						android:text="@string/currency_calculator"
+						android:textColor="@color/colorPrimaryDark"
+						android:textSize="28sp"
+						app:layout_constraintStart_toStartOf="@id/img_sort"
+						app:layout_constraintTop_toBottomOf="@id/img_sort"/>
+				
+				<TextView
+						android:id="@+id/tvDot"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:fontFamily="@font/open_sans_semibold"
+						android:text="."
+						android:textColor="@color/jade_green"
+						android:textSize="40sp"
+						android:layout_marginTop="@dimen/dimen_27"
+						app:layout_constraintTop_toTopOf="@id/tvCurrencyCal"
+						app:layout_constraintBottom_toBottomOf="@id/tvCurrencyCal"
+						app:layout_constraintRight_toRightOf="@id/tvCurrencyCal"
+				/>
+				
+				<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/textInputAmount"
+						style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+						android:layout_width="@dimen/dimen_0"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="@dimen/dimen_20"
+						app:helperText="@string/required"
+						app:errorEnabled="true"
+						app:layout_constraintEnd_toEndOf="@id/tvSignUp"
+						app:layout_constraintStart_toStartOf="@id/img_sort"
+						app:layout_constraintTop_toBottomOf="@id/tvCurrencyCal">
+					
+					<com.google.android.material.textfield.TextInputEditText
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:inputType="number"/>
+				
+				</com.google.android.material.textfield.TextInputLayout>
+				
+				<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/textInputResult"
+						style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+						android:layout_width="@dimen/dimen_0"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="@dimen/dimen_16"
+						app:layout_constraintEnd_toEndOf="@id/tvSignUp"
+						app:layout_constraintStart_toStartOf="@id/img_sort"
+						app:layout_constraintTop_toBottomOf="@id/textInputAmount">
+					
+					<com.google.android.material.textfield.TextInputEditText
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:enabled="false"
+							android:focusable="false"
+							android:textSize="@dimen/text_size_16"
+							android:fontFamily="@font/open_sans_semibold"
+							android:inputType="number"/>
+				
+				</com.google.android.material.textfield.TextInputLayout>
+				
+				<Spinner
+						android:id="@+id/fromSpinner"
+						android:layout_width="130dp"
+						android:layout_height="50dp"
+						android:background="@drawable/spinner_background"
+						app:layout_constraintTop_toBottomOf="@id/textInputResult"
+						app:layout_constraintStart_toStartOf="@id/textInputResult"
+						android:layout_marginTop="@dimen/dimen_18"/>
+				
+				<Spinner
+						android:id="@+id/toSpinner"
+						android:layout_width="130dp"
+						android:layout_height="50dp"
+						android:background="@drawable/spinner_background"
+						app:layout_constraintTop_toBottomOf="@id/textInputResult"
+						app:layout_constraintEnd_toEndOf="@id/textInputResult"
+						android:layout_marginTop="@dimen/dimen_18"/>
+				
+				<com.google.android.material.button.MaterialButton
+						android:id="@+id/btnConvert"
+						android:layout_width="@dimen/dimen_0"
+						android:layout_height="70dp"
+						style="@style/Widget.MaterialComponents.Button"
+						app:layout_constraintStart_toStartOf="@id/textInputResult"
+						app:layout_constraintEnd_toEndOf="@id/textInputResult"
+						app:backgroundTint="@color/jade_green"
+						app:cornerRadius="@dimen/dimen_8"
+						android:text="@string/convert"
+						android:textSize="@dimen/text_size_20"
+						android:fontFamily="@font/open_sans_semibold"
+						app:layout_constraintTop_toBottomOf="@id/fromSpinner"
+						app:layout_constraintBottom_toBottomOf="parent"/>
+				
+				<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:src="@drawable/ic_swap_horiz"
+						app:layout_constraintStart_toEndOf="@id/toSpinner"
+						app:layout_constraintEnd_toStartOf="@id/fromSpinner"
+						app:layout_constraintTop_toTopOf="@id/toSpinner"
+						app:layout_constraintBottom_toBottomOf="@id/fromSpinner"/>
+				
+				<TextView
+						android:id="@+id/tvLink"
+						android:layout_width="wrap_content"
+						app:layout_constraintStart_toStartOf="@id/btnConvert"
+						app:layout_constraintEnd_toEndOf="@id/btnConvert"
+						android:layout_marginTop="@dimen/dimen_12"
+						app:layout_constraintTop_toBottomOf="@id/btnConvert"
+						android:layout_height="wrap_content"
+						android:textSize="@dimen/text_size_16"
+						android:text="@string/text_link"
+						android:textColor="@color/colorPrimary"
+						android:gravity="center"
+				/>
+				
+				<TextView
+						android:id="@+id/tv"
+						android:layout_width="wrap_content"
+						app:layout_constraintStart_toEndOf="@id/tvLink"
+						app:layout_constraintTop_toTopOf="@id/tvLink"
+						app:layout_constraintBottom_toBottomOf="@id/tvLink"
+						android:layout_marginStart="@dimen/dimen_8"
+						android:layout_height="wrap_content"
+						android:textSize="@dimen/text_size_12"
+						android:text="i"
+						android:background="@drawable/circular_gray"
+						android:fontFamily="@font/open_sans"
+						android:textColor="@color/colorPrimary"
+						android:gravity="center"/>
+			
+			</androidx.constraintlayout.widget.ConstraintLayout>
+			
+			<FrameLayout
+					android:id="@+id/bottom_sheet"
+					android:layout_width="match_parent"
+					android:layout_height="500dp"
+					android:background="@drawable/graph"
+					app:behavior_hideable="true"
+					app:behavior_peekHeight="55dp"
+					android:visibility="gone"
+					app:layout_behavior="@string/bottom_sheet_behavior"/>
+		</androidx.coordinatorlayout.widget.CoordinatorLayout>
+	
+	</ScrollView>
+</layout>
