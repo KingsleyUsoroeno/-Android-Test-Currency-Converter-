@@ -19,8 +19,8 @@
 	</string-array>
 	
 	<string name="i">i</string>
-	<string name="full_stop">.</string>
 	<string name="todo">TODO</string>
 	<string name="sort_icon">Sort Icon</string>
+	<string name="full_stop">.</string>
 
 </resources>
