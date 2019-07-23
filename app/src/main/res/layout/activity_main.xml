@@ -131,7 +131,7 @@
 				
 				<Spinner
 						android:id="@+id/fromSpinner"
-						android:layout_width="@dimen/dimen_140"
+						android:layout_width="130dp"
 						android:layout_height="50dp"
 						android:background="@drawable/spinner_background"
 						app:layout_constraintTop_toBottomOf="@id/layoutResult"
@@ -140,7 +140,7 @@
 				
 				<Spinner
 						android:id="@+id/toSpinner"
-						android:layout_width="@dimen/dimen_140"
+						android:layout_width="130dp"
 						android:layout_height="50dp"
 						android:background="@drawable/spinner_background"
 						app:layout_constraintTop_toBottomOf="@id/layoutResult"
@@ -206,8 +206,6 @@
 						android:fontFamily="@font/open_sans"
 						android:textColor="@color/colorPrimary"
 						android:gravity="center"/>
-				
-				
 				
 			</androidx.constraintlayout.widget.ConstraintLayout>
 			
