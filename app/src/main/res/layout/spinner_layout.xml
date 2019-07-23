@@ -4,8 +4,8 @@
 		xmlns:app="http://schemas.android.com/apk/res-auto"
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:padding="@dimen/dimen_4">
+		android:layout_height="@dimen/dimen_50"
+		android:padding="@dimen/dimen_2">
 	
 	<ImageView
 			android:id="@+id/img_flag"
@@ -14,15 +14,15 @@
 			android:layout_height="@dimen/dimen_26"
 			app:layout_constraintTop_toTopOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
 			android:layout_margin="@dimen/dimen_12"/>
 	
 	
 	<TextView
 			android:id="@+id/tvRate"
-			android:layout_width="0dp"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textAllCaps="true"
-			app:layout_constraintEnd_toEndOf="parent"
 			android:layout_marginStart="@dimen/dimen_10"
 			tools:text="EUR"
 			android:fontFamily="@font/open_sans"

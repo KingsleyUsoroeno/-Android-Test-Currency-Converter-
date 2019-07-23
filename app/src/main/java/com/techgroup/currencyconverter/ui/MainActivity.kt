@@ -37,9 +37,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             this,
             R.layout.activity_main
         )
+        // init our ViewModel
         val viewModel = ViewModelProviders.of(this).get(ActivityViewModel::class.java)
+
         // hide the keyboard everyTime the activity starts
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+
         viewModel.ratesMutableLiveData.observe(this, Observer {
             setUpSpinnerAdapter(it)
         })
@@ -56,22 +59,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             activityMainBinding.bottomSheet.visibility = View.VISIBLE
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
         }
-        setUpClickAbleTextView()
-    }
 
-    private fun setUpClickAbleTextView() {
-        val spannableString = SpannableString(resources.getString(com.techgroup.currencyconverter.R.string.text_link))
-        val clickableSpan = object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com")))
-            }
+        activityMainBinding.tvLink.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com")))
         }
-        spannableString.setSpan(
-            clickableSpan, 0,
-            spannableString.lastIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        activityMainBinding.tvLink.text = spannableString
-        activityMainBinding.tvLink.movementMethod = LinkMovementMethod.getInstance()
     }
 
     private fun setUpSpinnerAdapter(conversionList: List<ConversionRates>) {
@@ -81,24 +72,24 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         activityMainBinding.toSpinner.adapter = adapter
         activityMainBinding.fromSpinner.onItemSelectedListener = this
 
-        activityMainBinding.toSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, i: Int, l: Long) {
-                val clickedItem = parent.getItemAtPosition(i) as ConversionRates
-                toConversionRate = clickedItem
-                activityMainBinding.textInputResult.hint = toConversionRate?.country
-            }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>) {
-                //handle when no item selected
-            }
-        }
-
         // Check if our Spinner has a Selected value before casting it to of type ConversionRate
         if (activityMainBinding.fromSpinner.selectedItem != null && activityMainBinding.toSpinner.selectedItem != null) {
             fromConversionRates = activityMainBinding.fromSpinner.selectedItem as ConversionRates
             toConversionRate = activityMainBinding.toSpinner.selectedItem as ConversionRates
             activityMainBinding.textInputAmount.hint = fromConversionRates?.country
-            activityMainBinding.textInputResult.hint = toConversionRate?.country
+            activityMainBinding.tvCountry.text = toConversionRate?.country
+        }
+
+        activityMainBinding.toSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, l: Long) {
+                val clickedItem = parent.getItemAtPosition(position) as ConversionRates
+                toConversionRate = clickedItem
+                activityMainBinding.tvCountry.text = toConversionRate?.country
+            }
+
+            override fun onNothingSelected(adapterView: AdapterView<*>) {
+                //handle when no item selected
+            }
         }
     }
 
@@ -116,20 +107,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val amount = activityMainBinding.textInputAmount.editText?.text.toString()
         if (amount.trim().isNotEmpty()) {
             val rate = amount.toDouble() * toCountry.rate!!
-            activityMainBinding.textInputResult.editText?.setText(rate.toString())
-            // Set our Result on our Result InPutEditText
+            // Set our Result on our Result TextView
+            activityMainBinding.tvConversionRate.text = rate.toString()
             Log.i("MainActivity", "Conversion Amount ${amount.toDouble() * toCountry.rate!!}")
         } else {
             activityMainBinding.textInputAmount.editText?.error = "Field is Required"
-        }
-    }
-
-    private fun expandBottomSheet() {
-        if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-//        } else {
-//            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
-//        }
         }
     }
 }

@@ -11,9 +11,9 @@
 			</item>
 			
 			<item>
-				<bitmap android:gravity="center|right"
-								android:src="@drawable/dropdown_icon"
-								android:tint="@color/gray"/>
+				<bitmap android:gravity="center|end"
+								android:src="@drawable/drop_down_icon"
+								android:tint="@color/textPrimaryColor"/>
 			</item>
 		
 		</layer-list>

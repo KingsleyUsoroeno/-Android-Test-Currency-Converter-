@@ -10,4 +10,5 @@
     <color name="persian_green">#00A572</color>
     <color name="White">#FFFFFF</color>
     <color name="gray">#dcdcdc</color>
+	<color name="light_gray">#dbdbdb</color>
 </resources>
